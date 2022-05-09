@@ -22,18 +22,9 @@ namespace API
         {
             services.AddApplicationServices(_config);
             services.AddControllers();
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-            .AddJwtBearer(opt =>
-            {
-                opt.TokenValidationParameters = new TokenValidationParameters
-                {
-                    ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config.GetSection("TokenKey").Value)),
-                    ValidateIssuer = false,
-                    ValidateAudience = false
-                };
-            });
-
+            services.AddCors();
+            services.AddIdentityServices(_config);
+            
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebAPIv5", Version = "v1" });
