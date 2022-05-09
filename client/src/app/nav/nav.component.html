@@ -16,9 +16,26 @@
         <a class="nav-link" href="#">C#</a>
       </li>
     </ul>
-    <form class="d-flex">
-      <input class="form-control me-2" type="text" placeholder="Username" />
-      <input class="form-control me-2" type="password" placeholder="Password" />
+    <form
+      #loginForm="ngForm"
+      (ngSubmit)="login()"
+      autocomplete="off"
+      class="d-flex"
+    >
+      <input
+        class="form-control me-2"
+        type="text"
+        placeholder="Username"
+        name="username"
+        [(ngModel)]="model.username"
+      />
+      <input
+        class="form-control me-2"
+        type="password"
+        placeholder="Password"
+        name="password"
+        [(ngModel)]="model.password"
+      />
       <button class="btn btn-outline-success" type="submit">Login</button>
     </form>
   </div>
